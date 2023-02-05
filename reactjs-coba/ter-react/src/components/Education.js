@@ -24,13 +24,13 @@ const Organization = [
 function Education() {
     return (
 <section id="education">
-<h1 class="font-bold text-md sm:text-xl ">Latar belakang</h1>
-<div class="pendidikan flex flex-col md:flex-row md:justify-around">
+<h1 className="font-bold text-md sm:text-xl ">Latar belakang</h1>
+<div className="pendidikan flex flex-col md:flex-row md:justify-around">
     {Organization.map((org) => 
-        <div class={org.stage}>
-        <h2 class="font-bold text-sm sm:text-lg md:text-xl">{org.name}</h2>
-        <p class="text-xs sm:text-md md:text-lg">{org.jurusan === "" ? "SSN" : org.jurusan}</p>
-        <p class="text-xs sm:text-md md:text-lg">{org.year}</p>
+        <div className={org.stage}>
+        <h2 className="font-bold text-sm sm:text-lg md:text-xl">{org.name}</h2>
+        <p className="text-xs sm:text-md md:text-lg">{org.jurusan === "" ? "SSN" : org.jurusan}</p>
+        <p className="text-xs sm:text-md md:text-lg">{org.year}</p>
     </div>
     )}
 </div>

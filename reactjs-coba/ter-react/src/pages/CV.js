@@ -6,7 +6,7 @@ import { Header, Footer } from "../components/Heafoot";
 
 function Contents() {
   return (
-  <main class="max-w-sm sm:max-w-md md:max-w-5xl mx-auto">
+  <main className="max-w-sm sm:max-w-md md:max-w-5xl mx-auto">
     <Summary/>
     <Education/>
     <Portofolio/>
@@ -16,7 +16,7 @@ function Contents() {
 
 function Cv() {
     return (
-        <div className="App" class="bg-white m-10 rounded-xl p-5 shadow-2xl shadow-black">
+        <div className="bg-white m-10 rounded-xl p-5 shadow-2xl shadow-black">
             <Header />
             <Contents />
             <Footer />

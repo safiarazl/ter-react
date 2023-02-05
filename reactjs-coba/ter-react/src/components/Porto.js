@@ -11,10 +11,10 @@ const Portofolios = [
 
 function loopPortofolio(num) {
     const card = Portofolios.map((porto) =>
-                    <div class="border-solid rounded-2xl shadow-md shadow-gray-600">
-                        <img class="rounded-t-lg" src={porto.image} alt={`image porto ${porto.name}`}/>
-                        <div class="padding p-2">
-                            <h2 class="font-bold">{porto.name}</h2>
+                    <div className="border-solid rounded-2xl shadow-md shadow-gray-600">
+                        <img className="rounded-t-lg" src={porto.image} alt={`my ${porto.name}`}/>
+                        <div className="padding p-2">
+                            <h2 className="font-bold">{porto.name}</h2>
                             <p>{porto.description}</p>
                         </div>
                     </div>
@@ -29,9 +29,9 @@ function loopPortofolio(num) {
 function Portofolio() {
     return (
         <section id="portofolio">
-            <h1 class="font-bold text-md sm:text-xl ">Portofolio</h1>
-            <div class="container-porto portofolio grid grid-rows-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
-                { loopPortofolio(999) }
+            <h1 className="font-bold text-md sm:text-xl ">Portofolio</h1>
+            <div className="container-porto portofolio grid grid-rows-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
+                { loopPortofolio(3) }
             </div>
         </section>
     );
