@@ -1,4 +1,5 @@
-import Picme from './assets/Safiar.jpg';
+import Picme from '../assets/Safiar.jpg';
+import React from 'react';
 
 function Summary() {
   return (
