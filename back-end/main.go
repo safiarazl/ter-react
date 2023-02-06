@@ -13,7 +13,7 @@ func main () {
 		Host:         "localhost",
 		Username:     "postgres",
 		Password:     "4321",
-		DatabaseName: "test_db_camp",
+		DatabaseName: "postgres",
 		Port:         5432,
 		Schema:       "public",
 	}
@@ -23,11 +23,12 @@ func main () {
 		panic(err)
 	}
 
-	conn.AutoMigrate(&model.User{}, &model.Session{}, &model.Education{})
+	conn.AutoMigrate(&model.User{}, &model.Session{}, &model.Education{}, &model.Porto{})
 	usersRepo := repo.NewUserRepository(conn)
 	sessionsRepo := repo.NewSessionsRepository(conn)
 	educationsRepo := repo.NewEducationRepository(conn)
+	portoRepo := repo.NewPortoRepository(conn)
 
-	mainAPI := api.NewAPI(usersRepo, sessionsRepo, educationsRepo)
+	mainAPI := api.NewAPI(usersRepo, sessionsRepo, educationsRepo, portoRepo)
 	mainAPI.Start()
 }

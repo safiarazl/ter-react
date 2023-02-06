@@ -1,8 +1,10 @@
 package model
 
 import (
-	"gorm.io/gorm"
 	"time"
+
+	"github.com/golang-jwt/jwt/v4"
+	"gorm.io/gorm"
 )
 
 type Credential struct {
@@ -16,9 +18,16 @@ type Credential struct {
 
 type Education struct {
 	gorm.Model
-	Name     string  `gorm:"type:varchar(100);unique_index"`
-	Major     string  `json:"major"`
-	Years     string  `json:"years"`
+	Name  string `gorm:"type:varchar(100);unique_index"`
+	Major string `json:"major"`
+	Years string `json:"years"`
+}
+type Porto struct {
+	gorm.Model
+	Name        string `gorm:"type:varchar(100);unique_index"`
+	Description string `json:"description"`
+	Image       string `json:"image"`
+	Link        string `json:"link"`
 }
 
 type Session struct {
@@ -32,6 +41,13 @@ type User struct {
 	gorm.Model
 	Password string
 	Username string `gorm:"type:varchar(100);unique_index"`
+}
+
+var JWT_KEY = []byte("qPlAoWkSiJeDuRhFyTg019238747356")
+
+type JWTclaim struct {
+	Username string
+	jwt.RegisteredClaims
 }
 
 type SuccessResponse struct {

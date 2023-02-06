@@ -14,7 +14,7 @@ func NewEducationRepository(db *gorm.DB) EducationRepository {
 	return EducationRepository{db}
 }
 
-func (p *EducationRepository) AddProduct(education model.Education) error {
+func (p *EducationRepository) AddEducation(education model.Education) error {
 	return p.db.Create(&education).Error //TODO: replace this
 }
 

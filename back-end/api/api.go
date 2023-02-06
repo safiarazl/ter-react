@@ -10,20 +10,30 @@ type API struct {
 	usersRepo    repo.UserRepository
 	sessionsRepo repo.SessionsRepository
 	educationsRepo repo.EducationRepository
+	portoRepo repo.PortoRepository
 	mux          *http.ServeMux
 }
 
-func NewAPI(usersRepo repo.UserRepository, sessionsRepo repo.SessionsRepository, educationsRepo repo.EducationRepository) API {
+func NewAPI(usersRepo repo.UserRepository, sessionsRepo repo.SessionsRepository, educationsRepo repo.EducationRepository, portoRepo repo.PortoRepository) API {
 	mux := http.NewServeMux()
 	api := API{
 		usersRepo,
 		sessionsRepo,
 		educationsRepo,
+		portoRepo,
 		mux,
 	}
 
 	fileServer := http.FileServer(http.Dir("./template"))
 	mux.Handle("/static/", http.StripPrefix("/static", fileServer))
+	
+	mux.Handle("/education/list", api.Get(http.HandlerFunc(api.EducationList)))
+	mux.Handle("/education/add", api.Post(http.HandlerFunc(api.AddEducation)))
+	mux.Handle("/education/delete", api.Delete(http.HandlerFunc(api.DeleteEducation)))
+	mux.Handle("/education/update", api.Post(http.HandlerFunc(api.UpdateEducation)))
+	// mux.Handle("/education/add", api.Post(api.Auth(http.HandlerFunc(api.AddProduct))))
+	// mux.Handle("/education/delete", api.Delete(api.Auth(http.HandlerFunc(api.DeleteProduct))))
+	// mux.Handle("/education/update", api.Put(api.Auth(http.HandlerFunc(api.UpdateProduct))))
 
 	// mux.Handle("/user/register", api.Post(http.HandlerFunc(api.Register)))
 	// mux.Handle("/user/login", api.Post(http.HandlerFunc(api.Login)))
@@ -33,10 +43,6 @@ func NewAPI(usersRepo repo.UserRepository, sessionsRepo repo.SessionsRepository,
 	// mux.Handle("/user/img/profile", api.Get(api.Auth(http.HandlerFunc(api.ImgProfileView))))
 	// mux.Handle("/user/img/update-profile", api.Post(api.Auth(http.HandlerFunc(api.ImgProfileUpdate))))
 
-	// mux.Handle("/product/list", api.Get(api.Auth(http.HandlerFunc(api.ProductList))))
-	// mux.Handle("/product/add", api.Post(api.Auth(http.HandlerFunc(api.AddProduct))))
-	// mux.Handle("/product/delete", api.Delete(api.Auth(http.HandlerFunc(api.DeleteProduct))))
-	// mux.Handle("/product/update", api.Put(api.Auth(http.HandlerFunc(api.UpdateProduct))))
 
 	// mux.Handle("/cart/list", api.Get(api.Auth(http.HandlerFunc(api.CartList))))
 	// mux.Handle("/cart/add", api.Post(api.Auth(http.HandlerFunc(api.AddCart))))
