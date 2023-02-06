@@ -27,9 +27,14 @@ func (api *API) Auth(next http.Handler) http.Handler {
 
 		claims := &model.JWTclaim{}
 		x, x1 := jwt.ParseWithClaims(sessionToken, claims, func(t *jwt.Token) (interface{}, error) {
-			return string(model.JWT_KEY), nil
+			return model.JWT_KEY, nil
 		})
-		_, err = x, x1
+		tokena, err := x, x1
+		if !tokena.Valid {
+			w.WriteHeader(http.StatusUnauthorized)
+			json.NewEncoder(w).Encode(model.ErrorResponse{Error: err.Error()})
+			return
+		}
 		if err != nil {
 			if err == jwt.ErrSignatureInvalid {
 				w.WriteHeader(http.StatusUnauthorized)
