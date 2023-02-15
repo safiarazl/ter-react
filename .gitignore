@@ -1,6 +1,10 @@
+<<<<<<< HEAD
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # coretan pages
 /front-end
 
+=======
+front-end
+>>>>>>> 35b2e2467d3c9be998a5cdaab2907337557f5224
 reactjs-coba.code-workspace
